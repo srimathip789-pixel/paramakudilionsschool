@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-600: #2563eb;
+  --primary-700: #1d4ed8;
+  --primary-800: #1e40af;
+  --primary-900: #1e3a8a;
+  
+  --secondary-50: #f0f9ff;
+  --secondary-100: #e0f2fe;
+  --secondary-600: #0ea5e9;
+  --secondary-700: #0369a1;
+  
+  --accent-50: #fffbeb;
+  --accent-500: #f59e0b;
+  --accent-600: #d97706;
+  --accent-700: #b45309;
+
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(226, 232, 240, 0.8);
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  
+  --card-bg: rgba(15, 23, 42, 0.85);
+  --card-border: rgba(51, 65, 85, 0.5);
+}
+
+@theme {
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  
+  --color-secondary-50: var(--secondary-50);
+  --color-secondary-100: var(--secondary-100);
+  --color-secondary-600: var(--secondary-600);
+  --color-secondary-700: var(--secondary-700);
+  
+  --color-accent-50: var(--accent-50);
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+  --color-accent-700: var(--accent-700);
+
+  --animate-marquee: marquee 45s linear infinite;
+  
+  @keyframes marquee {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  /* Support iOS safe areas (notch / home bar) */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  overflow-x: hidden;
+}
+
+/* Glassmorphism custom classes */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Custom Scrollbar for dashboard */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Uniform aspect ratio for image grids */
+.img-uniform {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: 100%;
+}
+
+.img-portrait {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* ===== Chatbot Floating Button Animations ===== */
+
+/* Ripple pulse rings around the chat button */
+@keyframes chatbot-ripple {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Bell ring shake */
+@keyframes bell-ring {
+  0%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(18deg); }
+  20% { transform: rotate(-16deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-12deg); }
+  50% { transform: rotate(8deg); }
+  60% { transform: rotate(-4deg); }
+  70% { transform: rotate(2deg); }
+  80% { transform: rotate(0deg); }
+}
+
+/* Bubble slide up from bottom */
+@keyframes chatbot-bubble-in {
+  0% { opacity: 0; transform: translateY(12px) scale(0.92); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Floating gentle bob */
+@keyframes chatbot-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Typing dots stagger */
+@keyframes chatbot-dot {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* Chat window slide up */
+@keyframes chatbot-window-in {
+  0% { opacity: 0; transform: translateY(24px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.chatbot-ripple {
+  animation: chatbot-ripple 2s ease-out infinite;
+}
+
+.chatbot-ripple-delay1 {
+  animation: chatbot-ripple 2s ease-out infinite 0.6s;
+}
+
+.chatbot-ripple-delay2 {
+  animation: chatbot-ripple 2s ease-out infinite 1.2s;
+}
+
+.chatbot-bell {
+  animation: bell-ring 3s ease-in-out infinite 1s;
+  transform-origin: top center;
+  display: inline-block;
+}
+
+.chatbot-bubble-in {
+  animation: chatbot-bubble-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.chatbot-float {
+  animation: chatbot-float 3s ease-in-out infinite;
+}
+
+.chatbot-window-in {
+  animation: chatbot-window-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  height: calc(100vh - 80px);
+  height: calc(100dvh - 80px);
+  max-height: 520px;
+}
+
+@media (min-width: 640px) {
+  .chatbot-window-in {
+    height: 520px;
+    max-height: 520px;
+  }
+}
+
+
+.chatbot-dot-1 { animation: chatbot-dot 1.4s ease-in-out infinite 0s; }
+.chatbot-dot-2 { animation: chatbot-dot 1.4s ease-in-out infinite 0.2s; }
+.chatbot-dot-3 { animation: chatbot-dot 1.4s ease-in-out infinite 0.4s; }
+
+/* No scrollbar utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Premium custom horizontal scrollbar for quick actions */
+.chatbot-quick-actions {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217, 119, 6, 0.4) rgba(255, 255, 255, 0.03);
+}
+
+.chatbot-quick-actions::-webkit-scrollbar {
+  height: 4px;
+}
+
+.chatbot-quick-actions::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 9999px;
+}
+
+.chatbot-quick-actions::-webkit-scrollbar-thumb {
+  background: rgba(217, 119, 6, 0.4);
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+
+.chatbot-quick-actions::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 119, 6, 0.65);
+}
+
