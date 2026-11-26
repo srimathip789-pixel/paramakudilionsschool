@@ -1,8 +1,10 @@
+// Run with: node --env-file=.env.local tools/check_staff.js
 const { createClient } = require('@supabase/supabase-js');
 
 const supabase = createClient(
-  'https://luvwkuccmwidgcpfklop.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx1dndrdWNjbXdpZGdjcGZrbG9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5OTI1OTYsImV4cCI6MjA5ODU2ODU5Nn0.HuwTWwGfv_S37PVRwRnQ1HSSeI_favZHH-Yf7RFRuX8'
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  // Use the service-role key only on your own PC — never commit it.
+  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
 async function main() {

@@ -140,6 +140,8 @@ ALTER TABLE contact_settings ENABLE ROW LEVEL SECURITY;
 
 -- ====================================================
 -- RLS Policies - Allow Public Read, Admin Write
+-- ⚠ After running this file, ALSO run supabase/secure-admin-policies.sql
+--   (restricts writes to listed admins instead of any logged-in user)
 -- ====================================================
 
 -- Committee Members Policies
