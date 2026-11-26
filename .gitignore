@@ -45,3 +45,8 @@ next-env.d.ts
 # excluded: sensitive/noise content, not part of app source
 lion Members.pdf
 old-website-dump/
+
+# test artefacts
+/test-results/
+/playwright-report/
+/scratch/
